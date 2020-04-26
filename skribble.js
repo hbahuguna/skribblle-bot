@@ -1,4 +1,4 @@
-// sorted words according to counts in games
+// sorted words according to counts in previous public games
 // https://skribbliohints.github.io/
 var words_dict = {
 	3: ["bow","bar","tie","pan","map","hut","arm","tug","rib","low","mtv","red","bad","old","gru","zoo","hot","toe","sea","dew","ice","bat","ivy","fly","fog","bmw","jaw","lap","eye","mud","ear","eat","pub","sky","log","kfc","wax","sit","ski","ant","hug","rat","toy","son","rug","mop","tip","axe","cat","owl","run","ham","nun","sew","box","sad","boy","pin","bag","web","god","gem","end","bmx","day","hat","hen","oar","key","mug","pot","fur","keg","die","eel","nut","paw","wig","lid","cap","dna","gas","pie","sun","usb","hop","spy","emu","pro","ufo","dog","cut","can","cup","flu","ram","fox","shy","cow","bus","ace","bed","dig","ash","bee","tea","oil","egg"],
