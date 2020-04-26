@@ -1,4 +1,5 @@
 // sorted words according to counts in games
+// https://skribbliohints.github.io/
 var words_dict = {
 	3: ["bow","bar","tie","pan","map","hut","arm","tug","rib","low","mtv","red","bad","old","gru","zoo","hot","toe","sea","dew","ice","bat","ivy","fly","fog","bmw","jaw","lap","eye","mud","ear","eat","pub","sky","log","kfc","wax","sit","ski","ant","hug","rat","toy","son","rug","mop","tip","axe","cat","owl","run","ham","nun","sew","box","sad","boy","pin","bag","web","god","gem","end","bmx","day","hat","hen","oar","key","mug","pot","fur","keg","die","eel","nut","paw","wig","lid","cap","dna","gas","pie","sun","usb","hop","spy","emu","pro","ufo","dog","cut","can","cup","flu","ram","fox","shy","cow","bus","ace","bed","dig","ash","bee","tea","oil","egg"],
 	4: ["nail","iron","full","well","chin","jail","soil","zeus","east","barn","tent","fall","wind","abba","nasa","hand","poor","shop","cute","hair","scar","rock","cuba","bark","dock","mall","yoda","fish","warm","fern","rome","thor","west","heel","knee","fast","cave","asia","silo","nose","lane","plow","base","good","sand","harp","slow","twig","rose","copy","tuna","palm","neck","weak","park","seed","finn","wave","fork","leaf","tiny","crab","dead","elmo","rain","tear","face","jayz","cold","lips","deep","legs","ramp","path","elsa","nemo","hard","bank","flag","lake","tank","drum","open","fort","ikea","farm","rail","vein","dora","blue","pine","olaf","moss","bald","lung","kiwi","tree","skin","rick","jazz","lily","wart","snow","nike","root","vine","thin","hulk","pink","audi","tuba","acne","pike","pond","head","hill","hook","rake","coal","rest","raft","beet","love","golf","kiss","meat","yeti","dice","lion","dent","mole","step","nuke","soup","goat","safe","mask","deer","king","diet","lady","wine","girl","lime","roll","comb","zoom","zuma","loaf","taco","belt","bomb","coin","glow","vise","bill","taxi","bowl","desk","stab","meal","book","gang","mint","pipe","echo","lynx","sale","bait","beak","bull","cake","cord","wasp","bite","chew","undo","loot","clay","read","puma","sink","lens","duel","diva","gate","meme","noob","duck","acid","baby","clap","wool","cape","cell","corn","exam","polo","text","knot","glue","afro","grid","page","pony","race","wing","foil","pope","doll","melt","tape","bird","cage","leak","luck","turd","work","boil","mars","swag","hoof","moth","salt","ipad","poop","worm","fizz","type","cork","bell","room","sick","vote","halo","food","soap","wife","jeep","line","milk","pill","rune","link","boar","pain","seal","navy","cash","monk","moon","sing","wire","walk","roof","cone","frog","nerd","spit","plug","horn","coat","flea","kite","mime","trap","risk","oreo","arch","pear","maid","cube","half","atom","shoe","yawn","boat","poke","door","gold","hose","pray","tail","toad","maze","oval","germ","hive","star","peas","claw","dots","drip","wall","chef","grin","wolf","bean","hurt","vent","burp","ball","spin","xbox","crow","deaf","derp","gift","hell","idea","swan","tomb","lock","beer","lamb","mold","ring","cola","punk","cast","hero","gasp","dome","orca","logo","beef","yolk","heat","rice","ruby","tire","soda","lava","lego","nest","goal","thug","lamp","slam"],
@@ -16,6 +17,7 @@ var words_dict = {
 	16: ["phineas and ferb","darwin watterson","flight attendant","pencil sharpener"],
 	17: ["leonardo da vinci","statue of liberty"]
 }
+// used for copying words when there is a new query on screen since we want to go back to using all words
 var copy = {
 	3: ["bow","bar","tie","pan","map","hut","arm","tug","rib","low","mtv","red","bad","old","gru","zoo","hot","toe","sea","dew","ice","bat","ivy","fly","fog","bmw","jaw","lap","eye","mud","ear","eat","pub","sky","log","kfc","wax","sit","ski","ant","hug","rat","toy","son","rug","mop","tip","axe","cat","owl","run","ham","nun","sew","box","sad","boy","pin","bag","web","god","gem","end","bmx","day","hat","hen","oar","key","mug","pot","fur","keg","die","eel","nut","paw","wig","lid","cap","dna","gas","pie","sun","usb","hop","spy","emu","pro","ufo","dog","cut","can","cup","flu","ram","fox","shy","cow","bus","ace","bed","dig","ash","bee","tea","oil","egg"],
 	4: ["nail","iron","full","well","chin","jail","soil","zeus","east","barn","tent","fall","wind","abba","nasa","hand","poor","shop","cute","hair","scar","rock","cuba","bark","dock","mall","yoda","fish","warm","fern","rome","thor","west","heel","knee","fast","cave","asia","silo","nose","lane","plow","base","good","sand","harp","slow","twig","rose","copy","tuna","palm","neck","weak","park","seed","finn","wave","fork","leaf","tiny","crab","dead","elmo","rain","tear","face","jayz","cold","lips","deep","legs","ramp","path","elsa","nemo","hard","bank","flag","lake","tank","drum","open","fort","ikea","farm","rail","vein","dora","blue","pine","olaf","moss","bald","lung","kiwi","tree","skin","rick","jazz","lily","wart","snow","nike","root","vine","thin","hulk","pink","audi","tuba","acne","pike","pond","head","hill","hook","rake","coal","rest","raft","beet","love","golf","kiss","meat","yeti","dice","lion","dent","mole","step","nuke","soup","goat","safe","mask","deer","king","diet","lady","wine","girl","lime","roll","comb","zoom","zuma","loaf","taco","belt","bomb","coin","glow","vise","bill","taxi","bowl","desk","stab","meal","book","gang","mint","pipe","echo","lynx","sale","bait","beak","bull","cake","cord","wasp","bite","chew","undo","loot","clay","read","puma","sink","lens","duel","diva","gate","meme","noob","duck","acid","baby","clap","wool","cape","cell","corn","exam","polo","text","knot","glue","afro","grid","page","pony","race","wing","foil","pope","doll","melt","tape","bird","cage","leak","luck","turd","work","boil","mars","swag","hoof","moth","salt","ipad","poop","worm","fizz","type","cork","bell","room","sick","vote","halo","food","soap","wife","jeep","line","milk","pill","rune","link","boar","pain","seal","navy","cash","monk","moon","sing","wire","walk","roof","cone","frog","nerd","spit","plug","horn","coat","flea","kite","mime","trap","risk","oreo","arch","pear","maid","cube","half","atom","shoe","yawn","boat","poke","door","gold","hose","pray","tail","toad","maze","oval","germ","hive","star","peas","claw","dots","drip","wall","chef","grin","wolf","bean","hurt","vent","burp","ball","spin","xbox","crow","deaf","derp","gift","hell","idea","swan","tomb","lock","beer","lamb","mold","ring","cola","punk","cast","hero","gasp","dome","orca","logo","beef","yolk","heat","rice","ruby","tire","soda","lava","lego","nest","goal","thug","lamp","slam"],
@@ -34,7 +36,7 @@ var copy = {
 	17: ["leonardo da vinci","statue of liberty"]
 }
 
-// send word
+// send word to chat window
 function sendGuess(word){
 	$("#inputChat").val(word);
 	$("#formChat").submit();
@@ -47,18 +49,19 @@ let previous_underscores = 0;
 
 let fillword = function(){
 	let query = $("#currentWord").text().toLowerCase();
+	//do nothing if word is currently showing in plain text on screen
     if(!query.includes("_")) {
         return;
     }
     let chars = query.split('');
+    // get number of underscores in current query
     let underscores = 0;
     for(i=0;i<chars.length;i++){
         if(chars[i] == "_") {
             underscores += 1;
         }
     }
-    
-	//reassign  word list
+    //reassign  word list when query changes
 	if(previous_length != query.length ) {
         previous_length = query.length;    
         for(var key in copy) {
@@ -76,12 +79,17 @@ let fillword = function(){
     }
     previous_underscores = underscores;
 	words = words_dict[query.length];
-	//words with hint
+	//if there is a hint letter, we want to narrow our search
 	for(i = 0; i < chars.length; i++) {
+		//this is a hint letter
+		// TODO add logic for more than one hints in a query
 		if(chars[i] != '_'){
+			// start looking for a word that contains hint
 			while (words.length > 0) {
+				//remove current word
 				cur_word = words.shift();
 				let chars_word = cur_word.split('');
+				// send to chat window if hint matches the letter in the word
 				if(chars_word[i] == chars[i]) {
 					sendGuess(cur_word);
 					return;
@@ -89,8 +97,11 @@ let fillword = function(){
 			}
 		}
 	}
+	// send and remove current word from head
 	sendGuess(words.shift());
 };
 
+// send a word to chat every 1.2 seconds
 var myval = setInterval(fillword, 1200);
-clearInterval(myval);
+// execute this on console when we want to stop sending words
+// clearInterval(myval);
